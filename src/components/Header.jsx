@@ -1,6 +1,7 @@
 // 画像のインポート
 import CoverImage from '../images/cover-image.jpg';
 import ProfileImage from '../images/profile-image.png';
+import { FaTwitter, FaGithub } from 'react-icons/fa';
 
 export const Header = () => {
   return (
@@ -8,7 +9,7 @@ export const Header = () => {
       {/* overlayはカバー画像の上に透過して表示される背景要素です */}
       <div className='overlay'></div>
       <div className='container'>
-        <div className='display-table'>
+        <div className='display-table'>f
           <div className='display-table-contents'>
             {/* カバー画像 */}
             <div className='profile-thumb' style={{ backgroundImage: `url(${ProfileImage})` }}></div>
@@ -17,10 +18,14 @@ export const Header = () => {
             <h3 className='title-text'>あなたの肩書(ex.Engineer)</h3>
             <ul className='social-icons'>
               <li className='icon-link'>
-                {/* TODO */}
+                <a href='https://twitter.com/'>
+                  <FaTwitter color='white' size='2rem' />
+                </a>
               </li>
               <li className='icon-link'>
-                {/* TODO */}
+                <a href='https://github.com/hedgehog248'>
+                  <FaGithub color='white' size='2rem' />
+                </a>
               </li>
             </ul>
           </div>
