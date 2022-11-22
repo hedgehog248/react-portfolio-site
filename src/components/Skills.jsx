@@ -1,16 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 import axios from 'axios';
+import { skillReducer, initialState, actionTypes } from '../reducers/skillReducer';
 
 export const Skills = () => {
-  const [languageList, setLanguageList] = useState([]);
-  console.log(languageList);
+  const [languageList, setLanguageList] = useReducer(skillReducer, initialState);
 
   useEffect(() => {
+    dispatchEvent({ type: actionTypes.fetch });
     axios.get('https://api.github.com/users/hedgehog248/repos')
       .then((response) => {
         const languageList = response.data.map(res => res.language);
         const countedLanguageList = generateLanguageCountObj(languageList);
-        setLanguageList(countedLanguageList);
+        dispatchEvent({ type: actionTypes.success, payload: { languageList: countedLanguageList } });
+      })
+      .catch(() => {
+        dispatchEvent({ type: actionTypes.error });
       });
   }, []);
 
